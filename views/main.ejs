@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<script>
+    window.onload = function () {
+        setInterval(ajax_f, 2000);
+        // setInterval(f_alarm, 30000);
+        // setInterval(f_DataFunction,2000);
+    }
+     var ajax_f = function () {
+        url = "/RealTime_data";
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+        xhr.setRequestHeader('Content-type', "application/json");
+        xhr.send();
+        xhr.addEventListener('load', function () {
+            data = xhr.responseText;
+            data = JSON.parse(data);
+            // console.log(result.Values[0].Value)
+            document.getElementById("temp").innerHTML = data.Values[1].Value;
+            document.getElementById("humidity").innerHTML = data.Values[2].Value;
+            document.getElementById("dust").innerHTML = data.Values[3].Value;
+            document.getElementById("dust2").innerHTML = data.Values[4].Value;
+            document.getElementById("co").innerHTML = data.Values[5].Value;
+            document.getElementById("co2").innerHTML = data.Values[6].Value;
+        });
+    }
+        var f_DataFunction = function(type,range1,range2){
+            url = "/Data_search";
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url);
+            xhr.setRequestHeader('Content-type', "application/json");
+            var data = {"ptype":type,"prange1":range1,"prange2":range2};
+            data = JSON.stringify(data);
+            xhr.send(data);
+            xhr.addEventListener('load', function () {
+                data = xhr.responseText;
+                data = JSON.parse(data);
+                console.log(data);
+            }); 
+        }
+
+        var f_alarm = function(){
+            url = "/RealTime_alarm";
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url);
+            xhr.setRequestHeader('Content-type', "application/json");
+            xhr.send();
+            xhr.addEventListener('load', function () {
+                data = xhr.responseText;
+                data = JSON.parse(data);
+                console.log(data);
+            });
+        }
+
+        var f_alarm = function(){
+            url = "/RealTime_alarm";
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url);
+            xhr.setRequestHeader('Content-type', "application/json");
+            xhr.send();
+            xhr.addEventListener('load', function () {
+                data = xhr.responseText;
+                data = JSON.parse(data);
+                console.log(data);
+            });
+        }
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" , initial-scale="1">
+    <title>Pilot Project</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kanit|Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kanit|Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+</head>
+<style text="text/css">
+    body#LoginForm {
+        background-image: url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        padding: 10px;
+    }
+</style>
+
+<di/div id="LoginForm">
+    <style type="text/css">
+        .jumbotron {
+            text-shadow: black 0.2em 0.2em 0.2em;
+            color: white;
+            background-image: url("images/view.JPG");
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+        th{
+            text-align : center;
+            font-family :'Jua';
+        }
+
+        td {
+            font-family: 'Jua';
+            color: black;
+            text-align :center;
+        }
+
+        p,
+        h3 {
+            font-family: 'Jua', sans-serif;
+        }
+
+        .bg-4 {
+            background-color: #2f2f2f;
+            color: #ffffff;
+        }
+
+        .form-heading {
+            color: #fff;
+            font-size: 23px;
+        }
+
+        .panel h2 {
+            color: #444444;
+            font-size: 18px;
+            margin: 0 0 8px 0;
+        }
+
+        .panel p {
+            color: #777777;
+            font-size: 14px;
+            margin-bottom: 30px;
+            line-height: 24px;
+        }
+
+        .login-form .form-control {
+            background: #f7f7f7 none repeat scroll 0 0;
+            border: 1px solid #d4d4d4;
+            border-radius: 4px;
+            font-size: 14px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .main-div {
+            background: #ffffff none repeat scroll 0 0;
+            border-radius: 2px;
+            margin: 10px auto 30px;
+            max-width: 50%;
+            padding: 50px 70px 70px 71px;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 10px;
+        }
+
+        .login-form {
+            text-align: center;
+        }
+
+        .forgot a {
+            color: #777777;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+
+        .login-form .btn.btn-primary {
+            background: #f0ad4e none repeat scroll 0 0;
+            border-color: #f0ad4e;
+            color: #ffffff;
+            font-size: 14px;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            padding: 0;
+        }
+
+        .forgot {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .botto-text {
+            color: black;
+            font-size: 14px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .login-form .btn.btn-primary.reset {
+            background: #ff9900 none repeat scroll 0 0;
+        }
+
+        .back {
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .back a {
+            color: #444444;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        body#LoginForm {
+            background: white none repeat scroll 0 0;
+        }
+
+        h4 {
+            text-align: center;
+            font-family: 'Jua';
+        }
+ 
+    </style>
+
+
+
+    <br><br>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1 class="text-center" style="font-family: 'Jua', sans-serif;">DashBoard</h1>
+            <br><br>
+            <p class="text-center">실시간 모니터링 & 데이터 조회 </p>
+        </div>
+    </div>
+    <br><br>
+    <h1 style='font-family: Jua; text-align: center;'>알람리스트</h1>
+    <br><br>
+
+    <div class='container'>
+        <table class="table table-striped" id='alarm'>
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">발생날짜</th>
+                <th scope="col">발생시간</th>
+                <th scope="col">유형</th>
+                <th scope="col">값</th>
+                <th scope="col">상태</th>
+              </tr>
+              </tr>
+            </thead>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>@@@@@</td>
+                <td>@@@@@</td>
+                <td>@@@@@</td>
+                <td>@@@@@</td>
+                <td>@@@@@</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+
+    </div>
+
+    <br><br>
+    <h1 style="text-align: center; font-family: 'Jua';" ;>실시간 데이터 모니터링</h1>
+
+    <br><br>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-4">
+                <div class="card" style="width:400px">
+                    <img class="card-img-top" src="images/tem.jpg" alt="not image" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">현재온도('C')</h4>
+                        <br>
+                        <h1 class="card-text" name="temp" id="temp" style="font-family: 'Jua'; text-align: center;">
+                            29.4'C
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card" style="width:400px">
+                    <img class="card-img-top" src="images/wa.jpg" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">습도(%)</h4>
+                        <br>
+                        <h1 class="card-text" name="humidity" id="humidity"
+                            style="font-family: 'Jua'; text-align: center;">
+                            22.6%
+                        </h1>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-4">
+                <div class="card" style="width:400px">
+                    <img class="card-img-top" src="images/1.jpg" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">미세먼지</h4>
+                        <br>
+                        <h1 class="card-text" style="font-family: 'Jua'; text-align: center;">
+                           1.0
+                        </h1>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="card" style="width:400px">
+                    <img class="card-img-top" src="images/cho.jpg" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">초미세먼지</h4>
+                        <br>
+                        <h1 class="card-text" name="dust2" id="dust2" style="text-align: center; font-family: 'Jua';">
+                            1.0
+                        </h1>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-4">
+                <div class="card" style="width:400px">
+                    <img class="card-img-top" src="images/co.png" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">일산화탄소</h4>
+                        <br>
+                        <h1 class="card-text" name="co" id="co" style="text-align:center ; font-family: 'Jua';">
+                            800
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card" style="width:400px">
+                    <img class="card-img-top" src="images/co2.jpg" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">이산화탄소</h4>
+                        <br>
+                        <h1 class="card-text" name="co2" id="co2" style="text-align: center; font-family: 'Jua';">
+                            0
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="container" style="text-align: center; font-family: 'Jua';">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    </div> <br>
+
+    <div class="container">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="/table_index" allowfullscreen name='data-iframe'></iframe>
+        </div>
+    </div>
+    <br>
+    <div align="center">
+        <a href="/table_time" target ="data-iframe"><button class="btn btn-light" style='font-family:"Jua"' type='radio' onclick='f_DataFunction("R","2020-01-17","2020-01-17")'value='hour'>시간별 조회</button></a>
+        <a href="/table_day" target ="data-iframe"><button class="btn btn-light" style='font-family:"Jua"' type='radio' onclick='f_DataFunction("D","2020-01-17","2020-01-17")' value='hour'>일별 조회</button></a>
+        <a href="/table_month" target ="data-iframe"><button class="btn btn-light" style='font-family:"Jua"' type='radio' onclick='f_DataFunction("M","2020-01-17","2020-01-17")' value='hour'>월별 조회</button></a>
+        <a href="/table_year" target ="data-iframe"><button class="btn btn-light" style='font-family:"Jua"' type='radio' onclick='f_DataFunction("Y","2020-01-17","2020-01-17")'value='hour'>년도별 조회</button></a>
+        
+    </div>
+    </form>
+    <br><br>
+    <div class='container'>
+        <a href="/"><button class="btn btn-warning btn-lg" style='font-family: "Jua";'> >>로그인 화면으로 돌아가기<< </button>
+    </div>
+    <br>
+    </div></div>
+    <br><br>
+    </body id="LoginForm">
+    <br><br><br>
+    <p class="botto-text" style="font-family: 'Jua'">©2020 Copyright: vetec</p>
+
+</html>
