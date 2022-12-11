@@ -21,7 +21,7 @@
     "btoa": "^1.2.1",
     "buffer": "^5.4.3",
     "ejs": "^3.0.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-mysql-session": "^2.1.0",
     "express-session": "^1.17.0",
     "mariadb": "^2.1.4",
